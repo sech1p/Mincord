@@ -12,7 +12,7 @@
             <ColumnDefinition Width="3*"/>
         </Grid.ColumnDefinitions>
         <PasswordBox x:Name="tokenTextBox" HorizontalAlignment="Left" Margin="23,27,0,0" VerticalAlignment="Top" Width="408" Grid.ColumnSpan="2"/>
-        <Button x:Name="loginButton" Content="Button" HorizontalAlignment="Left" Margin="91.818,67,0,0" VerticalAlignment="Top" Width="75" Click="loginButton_Click" Grid.Column="1"/>
+        <Button x:Name="loginButton" Content="Login" HorizontalAlignment="Left" Margin="91.818,67,0,0" VerticalAlignment="Top" Width="75" Click="loginButton_Click" Grid.Column="1"/>
 
     </Grid>
 </Window>

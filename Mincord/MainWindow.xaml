@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Mincord"
         mc:Ignorable="d"
-        Title="MainWindow" Height="445" Width="1086.178" SizeToContent="WidthAndHeight" WindowStyle="ToolWindow">
+        Title="Mincord" Height="445" Width="1086.178" SizeToContent="WidthAndHeight" WindowStyle="ToolWindow">
     <Grid>
         <StatusBar x:Name="statusBar" Height="35" Margin="0,385,10,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Loaded="statusBar_Loaded">
             <StatusBarItem Width="1063">
