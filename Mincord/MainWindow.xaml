@@ -1,0 +1,32 @@
+﻿<Window x:Class="Mincord.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Mincord"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="445" Width="1086.178" SizeToContent="WidthAndHeight" WindowStyle="ToolWindow">
+    <Grid>
+        <StatusBar x:Name="statusBar" Height="35" Margin="0,385,10,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Loaded="statusBar_Loaded">
+            <StatusBarItem Width="1063">
+                <TextBlock x:Name="username" MouseLeftButtonUp="username_MouseLeftButtonUp" Height="25" Width="167" RenderTransformOrigin="-0.653,0.821">username</TextBlock>
+            </StatusBarItem>
+        </StatusBar>
+        <ListView x:Name="serverAndFriendsListBox" Height="385" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="188" Loaded="serverAndFriendsListBox_Loaded" Margin="0,2,890,32" MouseDoubleClick="serverAndFriendsListBox_MouseDoubleClick">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <TextBox x:Name="messageTextBox" Height="31" Margin="376,356,0,32" TextWrapping="Wrap" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" KeyDown="messageTextBox_KeyDown"/>
+        <ListView x:Name="channelsAndFriendsListBox" Height="385" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="188" Loaded="serverAndFriendsListBox_Loaded" Margin="183,2,707,32" MouseDoubleClick="channelsAndFriendsListBox_MouseDoubleClick">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <WebBrowser x:Name="main" HorizontalAlignment="Left" Height="350" Margin="376,2,0,0" VerticalAlignment="Top" Width="702"/>
+    </Grid>
+</Window>

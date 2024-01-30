@@ -1,0 +1,15 @@
+﻿body {
+    background-color: white;
+    font-family: sans-serif;
+}
+
+#avatar {
+    position: relative;
+}
+.avatar {
+    position: absolute;
+    left: 1.5%;
+    top: 5.5%;
+    width: auto;
+    height: 96px;
+}
