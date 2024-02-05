@@ -134,6 +134,14 @@ namespace Mincord
 #endregion
 #region Emojis
                 messagesWeb = messagesWeb
+                    .Replace(":cat:", "🐱")
+                    .Replace(":smile_cat:", "😸")
+                    .Replace(":smiley_cat:", "😺")
+                    .Replace(":joy_cat:", "😹")
+                    .Replace(":heart_eyes_cat:", "😺")
+                    .Replace(":kissing_cat:", "😽")
+                    .Replace(":crying_cat:", "😿")
+                    .Replace(":pouting_cat:", "😾")
                     .Replace(":smirk_cat:", "😼");
 #endregion
                 messageTextBox.IsEnabled = true;
