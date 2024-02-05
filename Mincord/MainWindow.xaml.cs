@@ -104,32 +104,43 @@ namespace Mincord
 
         private async void LoadMessages()
         {
-            var stylesheet = new StreamReader("style.css").ReadToEnd();
-            var channelId = channelsAndFriendsListBox.SelectedItem.ToString().Split('')[1].Split('')[0];
-            var messagesApi = new Message(channelId);
-            var messages = await messagesApi.Messages(channelId);
-            var messagesObject = JsonConvert.DeserializeObject<List<Structures.Messages>>(messages);
-            var messagesWeb = "<!DOCTYPE html>" +
-                "<html>" +
-                "<head>" +
-                "<meta charset=\"UTF-8\">" +
-                "<style>" +
-                $"{stylesheet}" +
-                "</style>" +
-                "<title>Mincord</title>" +
-                "</head>" +
-                "<body>";
-            var avatar = "";
-
-            foreach (var message in messagesObject)
+            try
             {
-                avatar = message.Author.Avatar == null ?
-                    "https://cdn.discordapp.com/embed/avatars/0.png" :
-                    $"https://cdn.discordapp.com/avatars/{message.Author.Id}/{message.Author.Avatar}";
-                messagesWeb += $"<hr><div id=\"avatar\"><img src=\"https://raw.githubusercontent.com/AndroidWG/WLMOnline/master/assets/background/frame_96.png\" /><img class=\"avatar\" src=\"{avatar}\" /></div>{message.Author.Username} ({Convert.ToDateTime(message.Timestamp)})<br>{message.Content}<br><br>";
+                var stylesheet = new StreamReader("style.css").ReadToEnd();
+                var channelId = channelsAndFriendsListBox.SelectedItem.ToString().Split('')[1].Split('')[0];
+                var messagesApi = new Message(channelId);
+                var messages = await messagesApi.Messages(channelId);
+                var messagesObject = JsonConvert.DeserializeObject<List<Structures.Messages>>(messages);
+                var messagesWeb = "<!DOCTYPE html>" +
+                    "<html>" +
+                    "<head>" +
+                    "<meta charset=\"UTF-8\">" +
+                    "<style>" +
+                    $"{stylesheet}" +
+                    "</style>" +
+                    "<title>Mincord</title>" +
+                    "</head>" +
+                    "<body>";
+                var avatar = "";
+
+                foreach (var message in messagesObject)
+                {
+                    avatar = message.Author.Avatar == null ?
+                        "https://cdn.discordapp.com/embed/avatars/0.png" :
+                        $"https://cdn.discordapp.com/avatars/{message.Author.Id}/{message.Author.Avatar}";
+                    messagesWeb += $"<hr><div id=\"avatar\"><img src=\"https://raw.githubusercontent.com/AndroidWG/WLMOnline/master/assets/background/frame_96.png\" /><img class=\"avatar\" src=\"{avatar}\" /></div>{message.Author.Username} ({Convert.ToDateTime(message.Timestamp)})<br>{message.Content}<br><br>";
+                }
+                messageTextBox.IsEnabled = true;
+                main.NavigateToString(messagesWeb);
             }
-            messageTextBox.IsEnabled = true;
-            main.NavigateToString(messagesWeb);
+            catch (Exception exception)
+            {
+                if (exception.Message.Contains("403"))
+                {
+                    var channelForbiddenMessage = "You don't have permissions to view this channel";
+                    main.NavigateToString(channelForbiddenMessage);
+                }
+            }
         }
 
         private async void channelsAndFriendsListBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
