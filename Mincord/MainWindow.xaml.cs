@@ -97,8 +97,8 @@ namespace Mincord
                 if (channel.Type != 4) // TODO: Implement categories
                     if (channel.Type == 0) // Text channel
                         channelsAndFriendsListBox.Items.Add($"💬 {channel.Name} {channel.Id}");
-                    else if (channel.Type == 2) // Voice channel
-                        channelsAndFriendsListBox.Items.Add($"🎤 {channel.Name}");
+                    // else if (channel.Type == 2) // Voice channel
+                    //     channelsAndFriendsListBox.Items.Add($"🎤 {channel.Name}");
         }
 
 
