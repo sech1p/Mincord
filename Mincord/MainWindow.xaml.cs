@@ -104,6 +104,7 @@ namespace Mincord
 
         private async void LoadMessages()
         {
+#region Messages web render
             try
             {
                 var stylesheet = new StreamReader("style.css").ReadToEnd();
@@ -130,6 +131,11 @@ namespace Mincord
                         $"https://cdn.discordapp.com/avatars/{message.Author.Id}/{message.Author.Avatar}";
                     messagesWeb += $"<hr><div id=\"avatar\"><img src=\"https://raw.githubusercontent.com/AndroidWG/WLMOnline/master/assets/background/frame_96.png\" /><img class=\"avatar\" src=\"{avatar}\" /></div>{message.Author.Username} ({Convert.ToDateTime(message.Timestamp)})<br>{message.Content}<br><br>";
                 }
+#endregion
+#region Emojis
+                messagesWeb = messagesWeb
+                    .Replace(":smirk_cat:", "😼");
+#endregion
                 messageTextBox.IsEnabled = true;
                 main.NavigateToString(messagesWeb);
             }
