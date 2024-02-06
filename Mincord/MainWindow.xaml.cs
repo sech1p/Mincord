@@ -69,39 +69,6 @@ namespace Mincord
             userProfile.Show();
         }
 
-        private async void serverAndFriendsListBox_Loaded(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                var guilds = await GuildsInfo();
-
-                serverAndFriendsListBox.Items.Clear();
-                foreach (var guild in guilds)
-                    serverAndFriendsListBox.Items.Add($"{guild.Name} {guild.Id}");
-            }
-            catch (Exception exception)
-            {
-                MessageBox.Show($"An error has occured.\r\n{exception.Message}", "Mincord", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-        }
-
-        private async void serverAndFriendsListBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            var guildID = serverAndFriendsListBox.SelectedItem.ToString().Split('')[1].Split('')[0];
-            var channelApi = new Discord.API.APIs.Channel();
-            var channels = await channelApi.GetChannels(guildID);
-            var channelsObject = JsonConvert.DeserializeObject<List<Structures.Channel>>(channels);
-
-            channelsAndFriendsListBox.Items.Clear();
-            foreach (var channel in channelsObject)
-                if (channel.Type != 4) // TODO: Implement categories
-                    if (channel.Type == 0) // Text channel
-                        channelsAndFriendsListBox.Items.Add($"💬 {channel.Name} {channel.Id}");
-                    // else if (channel.Type == 2) // Voice channel
-                    //     channelsAndFriendsListBox.Items.Add($"🎤 {channel.Name}");
-        }
-
-
         private async void LoadMessages()
         {
 #region Messages web render
@@ -172,6 +139,48 @@ namespace Mincord
                 messageTextBox.Text = "";
                 LoadMessages();
             }
+        }
+
+        private async void serversListBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            var guildID = serversListBox.SelectedItem.ToString().Split('')[1].Split('')[0];
+            var channelApi = new Discord.API.APIs.Channel();
+            var channels = await channelApi.GetChannels(guildID);
+            var channelsObject = JsonConvert.DeserializeObject<List<Structures.Channel>>(channels);
+
+            channelsAndFriendsListBox.Items.Clear();
+            foreach (var channel in channelsObject)
+                if (channel.Type != 4) // TODO: Implement categories
+                    if (channel.Type == 0) // Text channel
+                        channelsAndFriendsListBox.Items.Add($"💬 {channel.Name} {channel.Id}");
+            // else if (channel.Type == 2) // Voice channel
+            //     channelsAndFriendsListBox.Items.Add($"🎤 {channel.Name}");
+        }
+
+        private async void serversListBox_Loaded(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                var guilds = await GuildsInfo();
+
+                serversListBox.Items.Clear();
+                foreach (var guild in guilds)
+                    serversListBox.Items.Add($"{guild.Name} {guild.Id}");
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show($"An error has occured.\r\n{exception.Message}", "Mincord", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void friendsListBox_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void friendsListBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+
         }
     }
 }

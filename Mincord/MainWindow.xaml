@@ -14,7 +14,7 @@
         </StatusBar>
         <TabControl Margin="0,2,900,40">
             <TabItem Header="Servers">
-                <ListView x:Name="serverAndFriendsListBox" Loaded="serverAndFriendsListBox_Loaded" Margin="0,-4,-2,-6" MouseDoubleClick="serverAndFriendsListBox_MouseDoubleClick" IsSynchronizedWithCurrentItem="False">
+                <ListView x:Name="serversListBox" Loaded="serversListBox_Loaded" Margin="0,-4,-2,-6" MouseDoubleClick="serversListBox_MouseDoubleClick" IsSynchronizedWithCurrentItem="False">
                     <ListView.View>
                         <GridView>
                             <GridViewColumn/>
@@ -23,17 +23,17 @@
                 </ListView>
             </TabItem>
             <TabItem Header="DM's">
-                <Grid Background="#FFE5E5E5">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="4*"/>
-                        <ColumnDefinition Width="5*"/>
-                        <ColumnDefinition Width="75*"/>
-                    </Grid.ColumnDefinitions>
-                </Grid>
+                <ListView x:Name="friendsListBox" Loaded="friendsListBox_Loaded" Margin="0,-4,-2,-6" MouseDoubleClick="friendsListBox_MouseDoubleClick" IsSynchronizedWithCurrentItem="False">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
             </TabItem>
         </TabControl>
         <TextBox x:Name="messageTextBox" Height="31" Margin="376,356,0,32" TextWrapping="Wrap" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" KeyDown="messageTextBox_KeyDown"/>
-        <ListView x:Name="channelsAndFriendsListBox" Height="385" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="188" Loaded="serverAndFriendsListBox_Loaded" Margin="183,2,707,32" MouseDoubleClick="channelsAndFriendsListBox_MouseDoubleClick">
+        <ListView x:Name="channelsAndFriendsListBox" Height="385" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="188" Loaded="friendsListBox_Loaded" Margin="183,2,707,32" MouseDoubleClick="channelsAndFriendsListBox_MouseDoubleClick">
             <ListView.View>
                 <GridView>
                     <GridViewColumn/>
