@@ -11,6 +11,7 @@ namespace Mincord.Discord.API
         public const string AVATAR_ENDPOINT = "https://cdn.discordapp.com/avatars";
         public const string USER_ME_ENDPOINT = "https://discord.com/api/users/@me";
         public const string USER_ME_GUILDS_ENDPOINT = "https://discord.com/api/users/@me/guilds";
+        public const string USER_ME_CHANNELS_ENDPOINT = "https://discord.com/api/users/@me/channels";
         public const string GUILDS_ENDPOINT = "https://discord.com/api/guilds";
         public const string CHANNEL_ENDPOINT = "https://discord.com/api/channels";
     }

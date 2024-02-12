@@ -12,9 +12,9 @@
                 <TextBlock x:Name="username" MouseLeftButtonUp="username_MouseLeftButtonUp" Height="25" Width="167" RenderTransformOrigin="-0.653,0.821">username</TextBlock>
             </StatusBarItem>
         </StatusBar>
-        <TabControl Margin="0,2,900,40">
+        <TabControl Margin="0,2,707,40">
             <TabItem Header="Servers">
-                <ListView x:Name="serversListBox" Loaded="serversListBox_Loaded" Margin="0,-4,-2,-6" MouseDoubleClick="serversListBox_MouseDoubleClick" IsSynchronizedWithCurrentItem="False">
+                <ListView x:Name="serversListBox" Loaded="serversListBox_Loaded" Margin="0,-4,186,-6" MouseDoubleClick="serversListBox_MouseDoubleClick" IsSynchronizedWithCurrentItem="False">
                     <ListView.View>
                         <GridView>
                             <GridViewColumn/>
@@ -22,7 +22,7 @@
                     </ListView.View>
                 </ListView>
             </TabItem>
-            <TabItem Header="DM's">
+            <TabItem x:Name="tabItem" Header="DM's">
                 <ListView x:Name="friendsListBox" Loaded="friendsListBox_Loaded" Margin="0,-4,-2,-6" MouseDoubleClick="friendsListBox_MouseDoubleClick" IsSynchronizedWithCurrentItem="False">
                     <ListView.View>
                         <GridView>
@@ -33,7 +33,7 @@
             </TabItem>
         </TabControl>
         <TextBox x:Name="messageTextBox" Height="31" Margin="376,356,0,32" TextWrapping="Wrap" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" KeyDown="messageTextBox_KeyDown"/>
-        <ListView x:Name="channelsAndFriendsListBox" Height="385" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="188" Loaded="friendsListBox_Loaded" Margin="183,2,707,32" MouseDoubleClick="channelsAndFriendsListBox_MouseDoubleClick">
+        <ListView x:Name="channelsAndFriendsListBox" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Loaded="friendsListBox_Loaded" Margin="171,25,707,40" MouseDoubleClick="channelsAndFriendsListBox_MouseDoubleClick">
             <ListView.View>
                 <GridView>
                     <GridViewColumn/>

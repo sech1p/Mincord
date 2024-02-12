@@ -17,5 +17,23 @@ namespace Mincord.Discord.API.APIs
                 .GetStringAsync();
             return guild;
         }
+
+        public async Task<string> GetDMs()
+        {
+            var token = Properties.Settings.Default["Token"];
+            var dm = await Endpoints.USER_ME_CHANNELS_ENDPOINT
+                .WithHeader("Authorization", token)
+                .GetStringAsync();
+            return dm;
+        }
+
+        public async Task<string> GetDM(string dmID)
+        {
+            var token = Properties.Settings.Default["Token"];
+            var dm = await $"{Endpoints.CHANNEL_ENDPOINT}/{dmID}/messages"
+                .WithHeader("Authorization", token)
+                .GetStringAsync();
+            return dm;
+        }
     }
 }

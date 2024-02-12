@@ -47,6 +47,14 @@ namespace Mincord
 
         }
 
+        public async Task<List<Structures.Channel>> DMsInfo()
+        {
+            var dm = new Discord.API.APIs.Channel();
+            var dmsInfo = await dm.GetDMs();
+            var dmsObject = JsonConvert.DeserializeObject<List<Structures.Channel>>(dmsInfo);
+            return dmsObject;
+        }
+
         public async Task<List<Messages>> MessagesInfo(string channelId)
         {
             var messages = new Discord.API.APIs.Message(channelId);
@@ -173,14 +181,55 @@ namespace Mincord
             }
         }
 
-        private void friendsListBox_Loaded(object sender, RoutedEventArgs e)
+        private async void friendsListBox_Loaded(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                var dms = await DMsInfo();
 
+                friendsListBox.Items.Clear();
+                foreach (var dm in dms)
+                {
+                    friendsListBox.Items.Add($"{dm.Id}");
+                }
+            }
+            catch (Exception exception)
+            {
+                //
+            }
         }
 
-        private void friendsListBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        private async void friendsListBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
+            var dmID = friendsListBox.SelectedItem.ToString().Split('')[1].Split('')[0];
+            var dmApi = new Discord.API.APIs.Channel();
+            var dms = await dmApi.GetDM(dmID);
+            var dmsObject = JsonConvert.DeserializeObject<List<Messages>>(dms);
 
+#region Messages web render
+            var stylesheet = new StreamReader("style.css").ReadToEnd();
+            var messagesWeb = "<!DOCTYPE html>" +
+                    "<html>" +
+                    "<head>" +
+                    "<meta charset=\"UTF-8\">" +
+                    "<style>" +
+                    $"{stylesheet}" +
+                    "</style>" +
+                    "<title>Mincord</title>" +
+                    "</head>" +
+                    "<body>";
+            var avatar = "";
+            foreach (var dm in dmsObject)
+            {
+                messagesWeb += "";
+                avatar = dm.Author.Avatar == null ?
+                    "https://cdn.discordapp.com/embed/avatars/0.png" :
+                    $"https://cdn.discordapp.com/avatars/{dm.Author.Id}/{dm.Author.Avatar}";
+                messagesWeb += $"<hr><div id=\"avatar\"><img src=\"https://raw.githubusercontent.com/AndroidWG/WLMOnline/master/assets/background/frame_96.png\" /><img class=\"avatar\" src=\"{avatar}\" /></div>{dm.Author.Username} ({Convert.ToDateTime(dm.Timestamp)})<br>{dm.Content}<br><br>";
+
+            }
+            main.NavigateToString(messagesWeb);
+#endregion
         }
     }
 }
